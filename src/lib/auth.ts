@@ -25,6 +25,9 @@ export const auth = betterAuth({
         enabled: true,
     },
 
+    disabledPaths: [
+        "/token",
+    ],
 
     plugins: [
         lastLoginMethod() ,        
