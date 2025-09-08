@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { signIn, client } from "@/lib/auth-client";
+import { signIn, authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -22,7 +22,7 @@ export default function ClientTest() {
 	const [loading, startTransition] = useTransition();
 
 	// Get the session data using the useSession hook
-	const { data: session, isPending, error } = client.useSession();
+	const { data: session, isPending, error } = authClient.useSession();
 
 	const handleLogin = async () => {
 		startTransition(async () => {
@@ -164,7 +164,7 @@ export default function ClientTest() {
 								variant="outline"
 								className="w-full"
 								onClick={() =>
-									client.signOut({
+									authClient.signOut({
 										fetchOptions: {
 											onSuccess: () => {
 												toast.success("Successfully signed out!");
