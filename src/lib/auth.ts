@@ -1,8 +1,7 @@
-import Database from "better-sqlite3";
-import { genericOAuth, lastLoginMethod, oidcProvider, admin } from "better-auth/plugins";
+// import Database from "better-sqlite3";
+import { bearer, lastLoginMethod, oidcProvider, admin, openAPI, jwt } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { betterAuth } from "better-auth";
-import { jwt } from "better-auth/plugins";
 
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db";
@@ -48,6 +47,8 @@ export const auth = betterAuth({
             
         }),
         admin(),
+        bearer(),
+        openAPI(),
         nextCookies(),
     ],
 });
