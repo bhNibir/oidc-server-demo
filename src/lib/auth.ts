@@ -4,10 +4,18 @@ import { nextCookies } from "better-auth/next-js";
 import { betterAuth } from "better-auth";
 import { jwt } from "better-auth/plugins";
 
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { db } from "@/db";
+import * as schema from "@/db/schema/auth";
+
 export const auth = betterAuth({
-    database: new Database(process.env.DATABASE_URL || "database.sqlite"),
+    database: drizzleAdapter(db, {
+		provider: "sqlite",
+
+		schema: schema,
+	}),
     appName: "odic-test",
-    // trustedOrigins: ["http://localhost:3001"],
+    trustedOrigins: [process.env.BETTER_AUTH_URL!],
     account: {
         accountLinking: {
             enabled: true, 
