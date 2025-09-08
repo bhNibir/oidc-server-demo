@@ -15,7 +15,7 @@ export const auth = betterAuth({
 		schema: schema,
 	}),
     appName: "odic-test",
-    trustedOrigins: [process.env.BETTER_AUTH_URL!],
+    // trustedOrigins: [process.env.BETTER_AUTH_URL!],
     account: {
         accountLinking: {
             enabled: true, 
