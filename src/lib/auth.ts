@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { genericOAuth, lastLoginMethod, oidcProvider } from "better-auth/plugins";
+import { genericOAuth, lastLoginMethod, oidcProvider, admin } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { betterAuth } from "better-auth";
 import { jwt } from "better-auth/plugins";
@@ -47,6 +47,7 @@ export const auth = betterAuth({
             ]
             
         }),
+        admin(),
         nextCookies(),
     ],
 });

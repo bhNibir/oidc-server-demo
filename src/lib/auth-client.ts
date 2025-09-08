@@ -5,6 +5,7 @@ import {
     genericOAuthClient,
     oidcClient,
     lastLoginMethodClient,
+    adminClient,
 } from "better-auth/client/plugins";
 
 export const authClient = createAuthClient({
@@ -14,6 +15,7 @@ export const authClient = createAuthClient({
         genericOAuthClient(),
         oidcClient(),
         lastLoginMethodClient(),
+        adminClient(),
     ],
 });
 
