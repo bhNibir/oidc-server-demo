@@ -12,19 +12,19 @@ import { getCallbackURL } from "@/lib/shared";
 export default function Page() {
 	const router = useRouter();
 	const params = useSearchParams();
-	useEffect(() => {
-		authClient.oneTap({
-			fetchOptions: {
-				onError: ({ error }) => {
-					toast.error(error.message || "An error occurred");
-				},
-				onSuccess: () => {
-					toast.success("Successfully signed in");
-					router.push(getCallbackURL(params));
-				},
-			},
-		});
-	}, []);
+	// useEffect(() => {
+	// 	authClient.oneTap({
+	// 		fetchOptions: {
+	// 			onError: ({ error }) => {
+	// 				toast.error(error.message || "An error occurred");
+	// 			},
+	// 			onSuccess: () => {
+	// 				toast.success("Successfully signed in");
+	// 				router.push(getCallbackURL(params));
+	// 			},
+	// 		},
+	// 	});
+	// }, []);
 
 	return (
 		<div className="w-full">
