@@ -41,7 +41,7 @@ export const auth = betterAuth({
                     clientSecret: "BxUtjGQkBfdxCWjlxGlNsiZoxOFzurPX",
                     name: "test-app",
                     type: "web",
-                    redirectURLs: ["http://localhost:3001/api/auth/oauth2/callback/test-app", "https://oidc-server-demo.vercel.app/api/auth/oauth2/callback/test-app"],
+                    redirectURLs: ["https://oidc-server-demo.vercel.app/api/auth/oauth2/callback/test-app"],
                     disabled: false,
                     skipConsent: true, // Skip consent for this trusted client
                     metadata: { internal: true }
