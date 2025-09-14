@@ -3,6 +3,11 @@ import { bearer, lastLoginMethod, oidcProvider, admin, openAPI, jwt } from "bett
 import { nextCookies } from "better-auth/next-js";
 import { betterAuth } from "better-auth";
 
+import {getGenericOAuthConfig} from "./oidc-cofig"
+
+const trustedClients = await getGenericOAuthConfig()
+
+
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "@/db";
 import * as schema from "@/db/schema/auth";
@@ -36,28 +41,7 @@ export const auth = betterAuth({
             loginPage: "/sign-in",
             useJWTPlugin: true,
             trustedClients: [
-                {
-                    clientId: "VNfiJSgbhPmkYgpNmxzrLZHOXkmfBGXl",
-                    clientSecret: "istTbmZIaVLJcqYiylrxnrVclQDyzEFn",
-                    name: "test-app-local",
-                    type: "web",
-                    // redirectURLs: ["https://oidc-client-demo.vercel.app/api/auth/oauth2/callback/test-app"],
-                    redirectURLs: ["http://localhost:3001/api/auth/oauth2/callback/test-app-local"],
-                    disabled: false,
-                    skipConsent: true, // Skip consent for this trusted client
-                    metadata: { internal: true }
-                },
-
-                {
-                    clientId: "VfrolVsbmKCPhSYQgIgpEnmFakpmfGgk",
-                    clientSecret: "BxUtjGQkBfdxCWjlxGlNsiZoxOFzurPX",
-                    name: "test-app",
-                    type: "web",
-                    redirectURLs: ["https://oidc-client-demo.vercel.app/api/auth/oauth2/callback/test-app"],
-                    disabled: false,
-                    skipConsent: true, // Skip consent for this trusted client
-                    metadata: { internal: true }
-                },
+               ...trustedClients
             ]
             
         }),
