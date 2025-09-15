@@ -9,11 +9,7 @@ import {
 } from "better-auth/plugins";
 import { nextCookies } from "better-auth/next-js";
 import { betterAuth } from "better-auth";
-import {
-  createAuthMiddleware,
-  APIError,
-  getSessionFromCtx,
-} from "better-auth/api";
+import { createAuthMiddleware, getSessionFromCtx } from "better-auth/api";
 
 import { getGenericOAuthConfig } from "./oidc-config";
 
@@ -71,7 +67,8 @@ export const auth = betterAuth({
     after: createAuthMiddleware(async (ctx) => {
       if (ctx.path === "/sign-out") {
         const { returned, adapter, session } = ctx.context;
-        if (returned && returned?.success && session?.user) {
+        const result = returned as { success?: boolean } | undefined;
+        if (result?.success && session?.user) {
           await adapter.deleteMany({
             model: "oauthAccessToken",
             where: [
