@@ -22,8 +22,8 @@ import { toast } from "sonner";
 import { getCallbackURL } from "@/lib/shared";
 
 export default function SignIn() {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("bh.nibir@gmail.com");
+	const [password, setPassword] = useState("12345678");
 	const [loading, startTransition] = useTransition();
 	const [rememberMe, setRememberMe] = useState(false);
 	const router = useRouter();
